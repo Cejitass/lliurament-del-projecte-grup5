@@ -3,10 +3,10 @@ import random
 
 random.seed(33)
 
-genero = ['hombre', 'mujer', 'prefiero_no_decirlo']
+genero = ['hombre', 'mujer', 'prefiero no decirlo']
 edad = ['niño','joven', 'adulto']
 continent = ['europe', 'asia', 'oceania', 'africa', 'north america', 'south america']
-musica = ['pop', 'techno', 'reggeaton','clasica','rap','heavy_metal']
+musica = ['pop', 'techno', 'reggeaton','clasica','rap','heavy metal']
 tarde_libre = ['bar', 'playa', 'montaña', 'sofa']
 trabajo = ['nada', 'estudiante', 'trabajador', 'jubilado']
 vacaciones = ['ocio', 'cultura', 'aventura']

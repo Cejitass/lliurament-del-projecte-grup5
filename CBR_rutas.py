@@ -74,8 +74,9 @@ class RecommendationSystem:
         i = 1
         for clave, _ in islice(dicc.items(), 5):
             ruta_nombre = df_rutas.loc[df_rutas['id_ruta'] == clave, 'nombre'].values[0]
+            descripcion = df_rutas.loc[df_rutas['id_ruta'] == clave, 'descripcion'].values[0]
             lugares = self.get_places(df_rutas,df_places,clave)
-            print(f"\n{i}. {ruta_nombre}. La ruta incluye los siguientes puntos de interés:")
+            print(f"\n{i}. {ruta_nombre}: {descripcion}\n\nLa ruta incluye los siguientes puntos de interés:")
             for l in lugares:
                 print(f"-{l}")
             i += 1
@@ -90,23 +91,21 @@ class RecommendationSystem:
         return lista_lugares
     
     def feedback_retain(self,dicc,df_usuarios,df_casos,df_rutas,respuestas):
-        n_ruta = int(input('Seleccione una de las 5 rutas(1-5:'))
+        n_ruta = int(input('\nSeleccione una de las 5 rutas(1-5): '))
         claves_lista = list(dicc.keys())
         route = claves_lista[n_ruta-1]
         n_user = len(df_usuarios)
-        feedback = int(input('¿Qué le ha parecido la ruta? Agradeceriamos si pudieras puntuarla entre 1 y 5 para el mejor desarroyo de la aplicación:'))
+        feedback = int(input('\n¿Qué le ha parecido la ruta? Agradeceriamos si pudieras puntuarla entre 1 y 5 para el mejor desarroyo de la aplicación: '))
         resp = respuestas.copy()
-        new_user = [n_user,resp['genero'],resp['edad'],resp['region'],resp['trabajo'],resp['musica'],resp['tarde_libre'],resp['vacaciones'],resp['mobilidad_reducida']]
+        new_user = [n_user,resp['genero'][0],resp['edad'][0],resp['region'][0],resp['trabajo'][0],resp['musica'][0],resp['tarde_libre'][0],resp['vacaciones'][0],resp['mobilidad_reducida'][0]]
         df_usuarios.loc[len(df_usuarios)] = new_user
         long = df_rutas.loc[df_rutas['id_ruta'] == route,'distancia'].values[0]
         sec = df_rutas.loc[df_rutas['id_ruta'] == route,'sectores'].values[0]
-        new_case = [n_user,resp['genero'],resp['edad'],resp['region'],resp['trabajo'],resp['musica'],resp['tarde_libre'],resp['vacaciones'],resp['mobilidad_reducida'],route,long,sec,feedback]
+        new_case = [n_user,resp['genero'][0],resp['edad'][0],resp['region'][0],resp['trabajo'][0],resp['musica'][0],resp['tarde_libre'][0],resp['vacaciones'][0],resp['mobilidad_reducida'][0],route,long,sec,feedback]
         df_casos.loc[len(df_casos)] = new_case
         df_usuarios.to_csv('df_usuarios.csv', index=False)
         df_casos.to_csv('df_casos.csv', index=False) 
-
         
-        return
         
             
     def recomendation(self):

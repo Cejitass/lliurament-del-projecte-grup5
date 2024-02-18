@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
 
 
-    response = input("Bienvenido a Explora Mataró, donde tendrás la mejor experiencia interactiva posible. Pulsa Y para continuar:\n\n")
+    response = input("Bienvenido a Explora Mataró, donde tendrás la mejor experiencia interactiva posible. \nA continuación vamos a hacerte una preguntas ya que queremos saber un poco más de tí para poder brindarte la mejor experiencia.Pulsa Y para continuar:\n\n")
 
     while response == "Y":
         recommendation_system.recomendation()
